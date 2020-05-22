@@ -16,29 +16,44 @@ export class AppComponent implements OnInit {
   rankOfDocument:any;
   title = 'tfm-ir';
   dsDocument: MatTableDataSource<Document>;
-  viewColumns: string[] = ['id','name','topics0','topics1','topics2','rank'];
+  viewColumns: string[] = ['id','name_s','lang_s','source_s','topics0_t','score','rank'];
   documentArray: Document[] = [
-    {id: "jrc31998F0428-en", 
-    name: "98/428/JHA: Joint Action of 29 June 1998 adopted by the Council on the basis of Article K.3 of the Treaty on European Union on the creation of a European Judicial Network",
-    topics0:"1422",
-    topics1:"8473",
-    topics2:"524",
-    text:"test1",
-    rank:"1"},
-    {id: "jrc31998F04282-en", 
-    name: "98/428/JHA: Joint Action of 29 June 1998 adopted by the Council on the basis of Article K.3 of the Treaty on European Union on the creation of a European Judicial Network",
-    topics0:"1422",
-    topics1:"8473",
-    topics2:"524",
-    text:"test2",
-    rank:"1"},
-    {id: "jrc31998F04283-en", 
-    name: "98/428/JHA: Joint Action of 29 June 1998 adopted by the Council on the basis of Article K.3 of the Treaty on European Union on the creation of a European Judicial Network",
-    topics0:"1422",
-    topics1:"8473",
-    topics2:"524",
-    text:"test3",
-    rank:"1"},
+    {
+      "id":"ocds-0c46vo-0007-40540587_40540587",
+      "name_s":"WP 213 Piling at CREWD for Tideway Central",
+      "lang_s":"en",
+      "source_s":"tbfy",
+      "topics0_t":"3879",
+      "score":1758.2242,
+      "rank":"4"
+   },
+   {
+      "id":"ocds-0c46vo-0020-english-heritage_1064_english-heritage_1064",
+      "name_s":"Dymchurch Martello Tower 24 Conservation Repair Work 2019",
+      "lang_s":"en",
+      "source_s":"tbfy",
+      "topics0_t":"3879",
+      "score":1758.2242,
+      "rank":"3"
+   },
+   {
+      "id":"ocds-0c46vo-0022-FEB285743_FEB285743",
+      "name_s":"Inspection Testing and Logging of Fire / Smoke Dampers Surveys",
+      "lang_s":"en",
+      "source_s":"tbfy",
+      "topics0_t":"3879",
+      "score":1758.2242,
+      "rank":"2"
+   },
+   {
+      "id":"ocds-0c46vo-0022-FEB344827_FEB344827",
+      "name_s":"Civil Engineering Works, Bridge Maintenance, General Building Works, and Concrete Repairs",
+      "lang_s":"en",
+      "source_s":"tbfy",
+      "topics0_t":"3879",
+      "score":1758.2242,
+      "rank":"1"
+   }
   ];
 
   numero: any;
@@ -52,7 +67,7 @@ export class AppComponent implements OnInit {
     this.dsDocument = new MatTableDataSource<Document>();
     this.getDocuments();
     this.rankOfDocument = "";
-    this.rankValues =['1','2','3','4','5','6','7','8','9','10']
+    this.rankValues =[{codigo:"1", desc:"high"},{codigo:"2", desc:"medium"},{codigo:"3", desc:"low"}];
     this.model = {}
   }
   ngOnInit(): void {

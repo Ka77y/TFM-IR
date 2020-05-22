@@ -8,27 +8,31 @@
       <th mat-header-cell *matHeaderCellDef> Id </th>
       <td mat-cell *matCellDef="let document"> {{document.id}} </td>
     </ng-container>
-    <ng-container matColumnDef="name">
+    <ng-container matColumnDef="name_s">
       <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let document"> {{document.name}} </td>
+      <td mat-cell *matCellDef="let document"> {{document.name_s}} </td>
     </ng-container>
-    <ng-container matColumnDef="topics0">
-      <th mat-header-cell *matHeaderCellDef> topics0 </th>
-      <td mat-cell *matCellDef="let document"> {{document.topics0}} </td>
+    <ng-container matColumnDef="lang_s">
+      <th mat-header-cell *matHeaderCellDef> lang_s </th>
+      <td mat-cell *matCellDef="let document"> {{document.lang_s}} </td>
     </ng-container>
-    <ng-container matColumnDef="topics1">
-      <th mat-header-cell *matHeaderCellDef> topics1 </th>
-      <td mat-cell *matCellDef="let document"> {{document.topics1}} </td>
+    <ng-container matColumnDef="source_s">
+      <th mat-header-cell *matHeaderCellDef> source_s </th>
+      <td mat-cell *matCellDef="let document"> {{document.source_s}} </td>
     </ng-container>
-    <ng-container matColumnDef="topics2">
-      <th mat-header-cell *matHeaderCellDef> topics2 </th>
-      <td mat-cell *matCellDef="let document"> {{document.topics2}} </td>
+    <ng-container matColumnDef="topics0_t">
+      <th mat-header-cell *matHeaderCellDef> topics0_t </th>
+      <td mat-cell *matCellDef="let document"> {{document.topics0_t}} </td>
+    </ng-container>
+    <ng-container matColumnDef="score">
+      <th mat-header-cell *matHeaderCellDef> score </th>
+      <td mat-cell *matCellDef="let document"> {{document.score}} </td>
     </ng-container>
     <ng-container matColumnDef="rank">
       <th mat-header-cell *matHeaderCellDef> Rank </th>
       <td mat-cell *matCellDef="let document">
         <mat-select [(value)]='document.rank'>
-          <mat-option *ngFor="let rankOfDocument of rankValues" [value]="rankOfDocument">{{rankOfDocument}}</mat-option>
+          <mat-option *ngFor="let rankOfDocument of rankValues" [value]="rankOfDocument.codigo">{{rankOfDocument.desc}}</mat-option>
         </mat-select>
       </td>
     </ng-container>
