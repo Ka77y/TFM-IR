@@ -1,0 +1,70 @@
+<nav class="navbar navbar-dark" *ngIf="visibleRank">
+  <input matInput type="text" readonly [(ngModel)]="documentInfo" name="documentInfo" id="docInfo">
+</nav>
+
+<div id="searchSection" *ngIf="!visibleDocument">
+  <form autocomplete="off">
+    <mat-form-field id="searchBy">
+      <mat-label>Search By</mat-label>
+      <mat-select [formControl]="searchParameter">
+        <mat-option *ngFor="let sp of searchOptions" [value]="sp.codigo">{{sp.desc}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlexFill id="searchVal">
+      <mat-label>Search Value</mat-label>
+      <input matInput type="text" [formControl]="searchValue">
+    </mat-form-field>
+  </form>
+</div>
+<!-- Toolbar -->
+
+<div class="contenedor" *ngIf="!visibleDocument">
+  <table mat-table [dataSource]="dsDocument" class="mat-elevation-z8" matSort id="docTable">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let document"> {{document.id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="name_s">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let document"> {{document.name_s}} </td>
+    </ng-container>
+    <ng-container matColumnDef="topics0_t">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let document"> {{document.topics0_t}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="viewDocumentColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: viewDocumentColumns;" (click)="getDocumentRank(row.id, row.name_s)" id="rowId"></tr>
+  </table>
+</div>
+
+<div class="contenedor" *ngIf="visibleRank">
+  <table mat-table [dataSource]="dsDocumentRank" class="mat-elevation-z8" matSort id="docTable">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>   </th>
+      <td mat-cell *matCellDef="let document">{{document.id}}</td>
+    </ng-container>
+    <ng-container matColumnDef="name_s">
+      <th mat-header-cell *matHeaderCellDef>   </th>
+      <td mat-cell *matCellDef="let document"> {{document.name_s}} </td>
+    </ng-container>
+    <ng-container matColumnDef="topics0_t">
+      <th mat-header-cell *matHeaderCellDef>   </th>
+      <td mat-cell *matCellDef="let document"> {{document.topics0_t}} </td>
+    </ng-container>
+    <ng-container matColumnDef="rank">
+      <th mat-header-cell *matHeaderCellDef>   </th>
+      <td mat-cell *matCellDef="let document" id="rankCell">
+        <mat-select [(value)]='document.rank'>
+          <mat-option *ngFor="let rankOfDocument of rankValues" [value]="rankOfDocument.codigo">{{rankOfDocument.desc}}
+          </mat-option>
+        </mat-select>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="viewDocumentRankColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: viewDocumentRankColumns;" id="rowId"></tr>
+  </table>
+  <button class="btn btn-primary mt-4" (click)="reRankDocument(dsDocumentRank)" id="rankButton" style="float: right;">Re Rank Documents</button>
+  <button class="btn btn-primary mt-4" (click)="backToDocuments()" id="goBackButton">Go Back</button>
+</div>
+
+<router-outlet></router-outlet>

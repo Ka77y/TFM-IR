@@ -1,0 +1,72 @@
+nav {
+    margin-bottom: 0rem;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(0, 0, 0); /* Green */ 
+    font-style: italic;
+}
+
+#docInfo {
+   font-family: 'Lucida Sans';
+   padding: 15px 15px;
+
+}
+
+form {
+    width: 90%;
+    margin:1rem auto;
+    text-align: center;
+ }
+
+ #searchBy {
+    margin-right: 10px;
+    width: 10%
+ }
+
+ #searchVal{
+    margin-right: 10px;
+    width: 50%
+ }
+
+table {
+    font-family: 'Lucida Sans';
+    width: 90%;
+    margin:4rem auto;
+ }
+
+ #rankCell{
+   width: 10%;
+   text-align: center;
+ }
+
+ td{
+   padding: 20px 15px;
+ }
+
+ #docTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color:rgb(0, 0, 0);
+    color: white;
+    font-size: 100%;
+  }
+
+button {
+  background-color: rgb(0, 0, 0); 
+  border: none;
+  color: white;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 110%;
+  margin:4rem;
+}
+
+button:hover{
+   background-color: #494F49;
+}
+
+#rowId:hover{
+   background-color: #F1F1F1;
+}

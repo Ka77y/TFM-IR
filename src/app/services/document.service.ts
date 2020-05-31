@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-const API_URL = environment.apiUrl;
+const DOCUMENT_URL = "http://localhost:8983/solr/documents";
+const RANK_URL = "http://localhost:8081";
 const headers = new HttpHeaders();
 
 @Injectable()
@@ -20,16 +20,28 @@ export class DocumentService {
     return header
   }
 
-  getAllDocuments(){
+  getAllDocuments(searchParameter: String){
     return new Promise((resolve, reject) => {
-      console.log(API_URL)
-      console.log(headers)
-      this.http.get("http://127.0.0.1:8983/solr/documents/select?q=*:*&rows=10", { headers: this.createHeader() }).subscribe(
+      let url = DOCUMENT_URL + "/select?q=" + searchParameter;
+      this.http.get(url).subscribe(
         data => {
           resolve(data)
         }, error => {
           reject(error)
+          console.log(error);
         })
       })
-  } 
+  }
+  
+  getDocumentRank(bodyJson){
+    return new Promise((resolve, reject) => {
+      let url = RANK_URL + "/ranks";
+      this.http.post(url, bodyJson, { headers: this.createHeader()}).subscribe(
+        data => {
+          resolve(data)
+        }, err => {
+          reject(err)
+        })
+      })
+  }
 }
