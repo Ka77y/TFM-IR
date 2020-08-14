@@ -1,5 +1,6 @@
 <nav class="navbar navbar-dark" *ngIf="visibleRank">
   <input matInput type="text" readonly [(ngModel)]="documentInfo" name="documentInfo" id="docInfo">
+  <input matInput type="text" readonly [(ngModel)]="flagButtonToggle" name="documentInfo" id="docInfo">
 </nav>
 
 <div id="searchSection" *ngIf="!visibleDocument">
@@ -17,45 +18,69 @@
   </form>
 </div>
 <!-- Toolbar -->
-
 <div class="contenedor" *ngIf="!visibleDocument">
   <table mat-table [dataSource]="dsDocument" class="mat-elevation-z8" matSort id="docTable">
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>  </th>
+      <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let document"> {{document.id}} </td>
     </ng-container>
     <ng-container matColumnDef="name_s">
-      <th mat-header-cell *matHeaderCellDef>  </th>
+      <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let document"> {{document.name_s}} </td>
     </ng-container>
     <ng-container matColumnDef="topics0_t">
-      <th mat-header-cell *matHeaderCellDef>  </th>
+      <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let document"> {{document.topics0_t}} </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="viewDocumentColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: viewDocumentColumns;" (click)="getDocumentRank(row.id, row.name_s)" id="rowId"></tr>
+    <tr mat-row *matRowDef="let row; columns: viewDocumentColumns;" (click)="getDocumentRank(row.id, row.name_s)"
+      id="rowId"></tr>
   </table>
 </div>
 
 <div class="contenedor" *ngIf="visibleRank">
+  <div>
+    <mat-button-toggle-group #group="matButtonToggleGroup" [value]="flagButtonToggle"
+      (change)="onValChange(group.value)">
+      <mat-button-toggle value="position">Position</mat-button-toggle>
+      <mat-button-toggle value="relevance">Relevance</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
   <table mat-table [dataSource]="dsDocumentRank" class="mat-elevation-z8" matSort id="docTable">
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>   </th>
+      <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let document">{{document.id}}</td>
     </ng-container>
     <ng-container matColumnDef="name_s">
-      <th mat-header-cell *matHeaderCellDef>   </th>
+      <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let document"> {{document.name_s}} </td>
     </ng-container>
     <ng-container matColumnDef="topics0_t">
-      <th mat-header-cell *matHeaderCellDef>   </th>
+      <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let document"> {{document.topics0_t}} </td>
     </ng-container>
-    <ng-container matColumnDef="rank">
-      <th mat-header-cell *matHeaderCellDef>   </th>
+    <ng-container matColumnDef="rank_relevance">
+      <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let document" id="rankCell">
         <mat-select [(value)]='document.rank'>
-          <mat-option *ngFor="let rankOfDocument of rankValues" [value]="rankOfDocument.codigo">{{rankOfDocument.desc}}
+          <mat-option *ngFor="let relevanceOfDocument of relevanceValues" [value]="relevanceOfDocument.codigo">
+            {{relevanceOfDocument.desc}}
+          </mat-option>
+        </mat-select>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="rank_position">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let document" id="rankCell">
+        <mat-select [(value)]='document.rank' (selectionChange)="select($event.value, document.id)">
+        <!-- <mat-select [(value)]='document.rank' (selectionChange)="select($event.value)"> -->
+          <!-- <ng-container *ngFor="let positionOfDocument of positionValues">
+            <mat-option *ngIf="positionOfDocument.selected" [value]="positionOfDocument.codigo">
+              {{positionOfDocument.codigo}}
+            </mat-option>
+          </ng-container> -->
+          <mat-option *ngFor="let positionOfDocument of document.rankOptions" [value]="positionOfDocument.codigo" >
+            {{positionOfDocument.codigo}}
           </mat-option>
         </mat-select>
       </td>
@@ -63,8 +88,8 @@
     <tr mat-header-row *matHeaderRowDef="viewDocumentRankColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: viewDocumentRankColumns;" id="rowId"></tr>
   </table>
-  <button class="btn btn-primary mt-4" (click)="reRankDocument(dsDocumentRank)" id="rankButton" style="float: right;">Re Rank Documents</button>
+  <button class="btn btn-primary mt-4" (click)="reRankDocument(dsDocumentRank)" id="rankButton" style="float: right;">Re
+    Rank Documents</button>
   <button class="btn btn-primary mt-4" (click)="backToDocuments()" id="goBackButton">Go Back</button>
 </div>
-
 <router-outlet></router-outlet>

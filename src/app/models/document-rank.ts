@@ -6,4 +6,5 @@ export class DocumentRank {
     topics0_t: string;
     score: number;
     rank: string;
+    rankOptions?: Array<any>
 }

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const DOCUMENT_URL = "http://localhost:8983/solr/documents";
 const RANK_URL = "http://localhost:8081";
+const FEEDBACK_URL = "http://localhost:9200/feedbackRankDocuments"
 const headers = new HttpHeaders();
 
 @Injectable()
@@ -37,6 +38,18 @@ export class DocumentService {
     return new Promise((resolve, reject) => {
       let url = RANK_URL + "/ranks";
       this.http.post(url, bodyJson, { headers: this.createHeader()}).subscribe(
+        data => { 
+          resolve(data)
+        }, err => {
+          reject(err)
+        })
+      })
+  }
+
+  sendRankFeedback(body){
+    return new Promise((resolve, reject) => {
+      let url = FEEDBACK_URL;
+      this.http.post(url, body, { headers: this.createHeader()}).subscribe(
         data => {
           resolve(data)
         }, err => {

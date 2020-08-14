@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { DocumentComponent } from './document/document.component';
 
 @NgModule({
@@ -27,7 +28,8 @@ import { DocumentComponent } from './document/document.component';
     MatSelectModule,
     BrowserAnimationsModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonToggleModule
   ],
   providers: [DocumentService, DocumentComponent],
   bootstrap: [AppComponent]

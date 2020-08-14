@@ -70,3 +70,10 @@ button:hover{
 #rowId:hover{
    background-color: #F1F1F1;
 }
+ 
+ toggle-button {
+   margin: 0 auto;
+   color: #DB5B33;
+   font-weight: 300;
+   text-align: center;
+ } 
