@@ -5,9 +5,7 @@ Este repositorio contiene un sistema Web de retroalimentación de similitud de u
 - Las características con la que cuenta el sistema son:
 
 	> * El sistema web permite seleccionar un documento y recupera los documentos que se consideran similares a este, con un orden previamente definido.
-
 	> * Permite ordenar un par de documentos similares mediante dos criterios: niveles de relevancia y posicionamiento.
-
 	> * Permite la conexión a una API y envía la información de la retroalimentación en formato JSON.
 
 La API por defecto (disponible en: https://github.com/Ka77y/TFM/tree/master/Scripts/api), que está usando este proyecto colabora directamente con el modelo de generación de asociaciones de tópicos (disponible en: https://github.com/Ka77y/TFM)
