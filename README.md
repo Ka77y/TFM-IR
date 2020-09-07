@@ -8,9 +8,11 @@ Este repositorio contiene un sistema Web de retroalimentación de similitud de u
 	> * Permite ordenar un par de documentos similares mediante dos criterios: niveles de relevancia y posicionamiento.
 	> * Permite la conexión a una API y envía la información de la retroalimentación en formato JSON.
 
-La API por defecto (disponible en: https://github.com/Ka77y/TFM/tree/master/Scripts/api), que está usando este proyecto colabora directamente con el modelo de generación de asociaciones de tópicos (disponible en: https://github.com/Ka77y/TFM)
+La API por defecto (https://github.com/Ka77y/TFM/tree/master/Scripts/api), que está usando este proyecto colabora directamente con el modelo de generación de asociaciones de tópicos (https://github.com/Ka77y/TFM)
 
-Para poder proceder con la implementación de este sistema es necesario tener implementado el demo de librairy (disponible en: https://github.com/librairy/demo ) de manera local.
+Para poder proceder con la implementación de este sistema es necesario tener implementado el demo de librairy (https://github.com/librairy/demo) de manera local.
+
+El presente proyecto forma parte del TFM de la Maestría en Ciencia de Datos de la UPM.
 
 # TfmIr
 
